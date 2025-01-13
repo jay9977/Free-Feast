@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'black';
+    src: url('fonts/Blacknorthdemo-mLE25.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'pumpkin';
+    src: url('fonts/PumpkinTypeHalloween-8MVEg.ttf')format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    
+   
+}
+@font-face {
+    font-family: 'flower';
+    src: url('fonts/FlowerheartpersonaluseRegular-AL9e2.otf')format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    
+   
+}

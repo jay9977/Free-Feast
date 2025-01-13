@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Add School</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+</head>
+
+<body>
+  <section id="container">
+    <!-- Header -->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="home.html">Home</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="nav-collapse ">
+      <ul class="sidebar-menu" id="nav-accordion">
+        <p class="centered"></p>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Add School</h3>
+        <div class="row mt">
+          <div class="col-lg-8" align="center">
+            <h4 style="color:white"><i class="fa fa-angle-right"></i> Fill Information In Form</h4>
+            <div class="form-panel">
+              <div class="form">
+                <!-- Form -->
+                <form id="signupForm" class="cmxform form-horizontal style-form" method="post">
+                  <div class="form-group">
+                    <label for="name" class="control-label col-lg-2">School Name</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="name" name="name" placeholder="Enter School Name" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address" class="control-label col-lg-2">Address</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="address" name="address" placeholder="Enter Address" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="mobile" class="control-label col-lg-2">Contact</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" type="text" minlength="10" maxlength="10" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="control-label col-lg-2">Email</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="email" name="email" placeholder="Enter Email" type="email" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="control-label col-lg-2">Password</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="password" name="pass" placeholder="Enter Password" type="password" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="control-label col-lg-2">City</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" id="city" name="city" placeholder="Enter City" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+           </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async function (event) {
+      event.preventDefault(); // Prevent default form submission
+  
+      // Collect form data
+      const formData = {
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        pass: document.getElementById("password").value,
+        city: document.getElementById("city").value,
+      };
+  
+      try {
+        const response = await fetch("http://localhost:8080/add-school", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        if (response.ok) {
+          alert("School added successfully!");
+          const result = await response.json();
+          console.log("Success:", result);
+  
+          // Clear form fields after successful submission
+          document.getElementById("signupForm").reset();
+        } else {
+          alert("Failed to add school. Check your input.");
+          console.error("Error:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("An error occurred while submitting the form.");
+      }
+    });
+  </script>
+  
+
+  <!-- External Scripts -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/common-scripts.js"></script>
+</body>
+
+</html>

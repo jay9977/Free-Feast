@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">  
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>add Supplier</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+  
+  <style>
+    body {
+      color: #797979;
+      background: url("img/8.jpg") no-repeat top;
+      background-size: cover;
+      font-family: 'Ruda', sans-serif;
+      padding: 0px !important;
+      margin: 0px !important;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="container">
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <div class="nav notify-row" id="top_menu">
+        <ul class="nav top-menu">
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="loginpage.html#">
+              <i class="fa fa-tasks"></i>
+            </a>
+          </li>
+        </ul> 
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="home.html">Logout</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- sidebar start-->
+    <div id="sidebar" class="nav-collapse ">
+      <ul class="sidebar-menu" id="nav-accordion">
+        <p class="centered">
+        </p>
+        <li><a href="viewSchool.html"><i class="fa fa-table fa-3x"></i>View School</a></li>
+        <li><a href="viewMeal.html"><i class="fa fa-table fa-3x"></i>View Meal</a></li>
+        <li><a href="addSupplier.html"><i class="fa fa-edit fa-3x"></i>Add Supplier</a></li>
+        <li><a href="viewSupplier.html"><i class="fa fa-table fa-3x"></i>View Supplier</a></li>
+        <li class="nav-label"> Assign requirements Status</li>
+        <li>
+          <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+            <i class="icon-note menu-icon"></i><span class="nav-text">Operations</span>
+          </a>
+          <ul aria-expanded="false">
+            <li><a href="Delivery_Status.html">Delivery Status</a></li>
+          </ul>
+        </li>
+        <li><a href="viewComplaints.html"><i class="fa fa-table fa-3x"></i>View Complaints</a></li>
+        
+      </ul>
+    </div>
+    <!--sidebar end-->
+
+    <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i>Add Supplier</h3>
+        
+        <div class="row mt">
+          <div class="col-lg-8" align="center">
+            <h4 style="color:white"><i class="fa fa-angle-right"></i> Fill Information In Form</h4>
+            <div class="form-panel">
+              <div class="form">
+                <form class="cmxform form-horizontal style-form" id="SupplierForm" method="post" action="addSupplier" align="center">
+                  <div class="form-group">
+                    <label for="schoolname" class="control-label col-lg-2">Supplier Name</label>
+                    <div class="col-lg-10">
+                      <input class=" form-control" id="name" name="name" placeholder="Enter Supplier Name" type="text" required/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address" class="control-label col-lg-2">Address</label>
+                    <div class="col-lg-10">
+                      <input class=" form-control" id="address" name="address" placeholder="Enter Address" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact" class="control-label col-lg-2">Contact</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="mobile" name="mobile" placeholder="Enter Mobile Number" onkeypress="return isNumberKey(event)"  minlength="10" maxlength="10" required/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="control-label col-lg-2">Email</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="email" name="email" placeholder="Enter Email" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="control-label col-lg-2">Password</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="password" name="password" placeholder="Enter Password" type="password" minlength="5" maxlength="20" required/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="control-label col-lg-2">City</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="city" name="city" placeholder="Enter City" type="text" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js"></script>
+  <script src="lib/common-scripts.js"></script>
+
+  <!-- JavaScript for add supplier in database -->
+  <script>
+    document.getElementById("SupplierForm").addEventListener("submit", async function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Collect form data
+      const formData = {
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value, // Corrected field name
+        city: document.getElementById("city").value,
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/add-supplier", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          alert("Supplier added successfully!");
+          document.getElementById("SupplierForm").reset(); // Clear the form
+          const result = await response.json();
+          console.log("Success:", result);
+        } else {
+          alert("Failed to add supplier. Check your input.");
+          console.error("Error:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("An error occurred while submitting the form.");
+      }
+    });
+  </script>
+</body

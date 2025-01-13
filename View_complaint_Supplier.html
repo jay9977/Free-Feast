@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>View Complaints</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- External CSS -->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+
+  <style>
+    body {
+      color: #797979;
+      background: url("img/supplier.jpg") no-repeat top;
+      background-size: cover;
+      font-family: 'Ruda', sans-serif;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="container">
+    <!-- Header Start -->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="home.html">Logout</a></li>
+        </ul>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Sidebar Start -->
+    <div id="sidebar" class="nav-collapse">
+      <ul class="sidebar-menu" id="nav-accordion">
+        <li>
+          <a href="View_assignment.html"><i class="fa fa-edit fa-3x"></i>View Requirements</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Sidebar End -->
+
+    <!-- Main Content -->
+    <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> View Complaints</h3>
+        <div class="row mt">
+          <div class="col-lg-12" align="center">
+            <h4 style="color:white"><i class="fa fa-angle-right"></i> Complaints</h4>
+            <div class="form-panel">
+              <div class="form">
+                <table class="table table-bordered table-striped" id="complaintTable">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>School Name</th>
+                      <th>Complaint</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Data will be dynamically injected here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <!-- JS Scripts -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/common-scripts.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const complaintTableBody = document.querySelector("#complaintTable tbody");
+
+      // Function to fetch complaints
+      function fetchComplaints() {
+        fetch("http://localhost:8080/get-complaints")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            populateTable(data);
+          })
+          .catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+          });
+      }
+
+      // Function to populate the table with complaint data
+      function populateTable(complaints) {
+        complaintTableBody.innerHTML = ""; // Clear existing rows
+
+        if (complaints.length === 0) {
+          const row = document.createElement("tr");
+          const noDataCell = document.createElement("td");
+          noDataCell.colSpan = 4; // Full width of the table
+          noDataCell.textContent = "No complaints found.";
+          noDataCell.style.textAlign = "center";
+          row.appendChild(noDataCell);
+          complaintTableBody.appendChild(row);
+          return;
+        }
+
+        complaints.forEach((complaint) => {
+          const row = document.createElement("tr");
+
+          const idCell = document.createElement("td");
+          idCell.textContent = complaint.id;
+          row.appendChild(idCell);
+
+          const schoolNameCell = document.createElement("td");
+          schoolNameCell.textContent = complaint.schoolName;
+          row.appendChild(schoolNameCell);
+
+          const complaintCell = document.createElement("td");
+          complaintCell.textContent = complaint.complaint;
+          row.appendChild(complaintCell);
+
+          const dateCell = document.createElement("td");
+          dateCell.textContent = complaint.date;
+          row.appendChild(dateCell);
+
+          complaintTableBody.appendChild(row);
+        });
+      }
+
+      // Fetch complaints on page load
+      fetchComplaints();
+    });
+  </script>
+</body>
+
+</html>

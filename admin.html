@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Free feast</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+  
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+  <style>
+    body {
+    color: #797979;
+	background: url("img/8.jpg") no-repeat top;
+	 background-size: cover;
+    font-family: 'Ruda', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size:13px;
+}
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+</head>
+
+<body>
+  
+<div class="sidenav">
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+          <!-- settings start -->
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="loginpage.html#">
+              <i class="fa fa-tasks"></i>
+              
+              </a>
+            
+          </li>
+         
+          <!-- settings end -->
+          
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li>
+            <a class="logout" href="home.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+          </p>
+              
+               	<li>
+                    <a  href="viewSchool.html"><i class="fa fa-table fa-3x"></i>View School</a>
+                    </li>
+                   <li>
+                        <a  href="viewMeal.html"><i class="fa fa-table fa-3x"></i>View Meal</a>
+                    </li>
+                    
+                     <li>
+                        <a  href="addSupplier.html"><i class="fa fa-edit fa-3x"></i>Add Supplier</a>
+                    </li>
+                    <li>
+                        <a  href="viewSupplier.html"><i class="fa fa-table fa-3x"></i>View Supplier</a>
+                    </li>
+                    
+                    <li>
+                        <a  href="viewReport.jsp"><i class="fa fa-table fa-3x"></i>View Reports</a>
+                    </li>
+                    <li class="nav-label">Approve & Assign requirements</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Operations</span>
+                        </a>
+                        
+                        <ul aria-expanded="false">
+                            <li><a href="approveReq.jsp">Approve Supplier</a>
+                            
+                        </ul>
+                        <ul aria-expanded="false">
+                            <li><a href="assignReq.jsp">Assign Requirements</a>
+                            
+                        </ul>
+                   
+                    </li>
+                   
+                    <li>
+                        <a  href="viewComplaints.html"><i class="fa fa-table fa-3x"></i>View Complaints</a>
+                    </li>
+                    <li>
+                        <a  href="viewImagesAdmin.jsp"><i class="fa fa-table fa-3x"></i>View Images</a>
+                    </li>
+	                </ul>
+	</li>
+
+      </div>
+       </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+  
+    <!--footer start-->
+    
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <!--script for this page-->
+ 
+  
+</body>
+
+</html>

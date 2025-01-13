@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Free feast</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+  
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+          <!-- settings start -->
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="loginpage.html#">
+              <i class="fa fa-tasks"></i>
+              
+              </a>
+            
+          </li>
+          <!-- settings end -->
+         </ul> 
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li>
+            <a class="logout" href="home.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+          </p>
+          			
+
+      </div>
+       </div>
+    </aside> <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i>Upload School document</h3>
+        
+        <div class="row mt">
+          <div class="col-lg-8" textalign="center">
+            
+            <div class="form-panel">
+            <div class="form">
+                <form action="UploadDoc" method="post" enctype="multipart/form-data">
+				
+				 <div class="form-group row" >
+                 <input type="hidden" name="action" value="add"/>
+    			<label for="inputEmail3" class="col-sm-3 form-control-label">Upload document</label>
+                  <div class="col-sm-9">
+                 <input type="file" cols="7" rows="1" class="form-control" name="doc" placeholder="Select document" accept=".gif, .jpg, .png, .pdf" required>
+                    <!-- input type="submit" value="upload"-->
+                  </div>
+                </div>
+               
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                    <button onclick="popUp()" type="submit" class="btn btn-primary">Upload</button>
+                      <!--  <button class="btn btn-theme" type="submit">Submit</button>-->
+                      
+                    </div>
+                  </div>
+                </form><br>
+				<div class="sign-down">
+				  <h5><a href="loginpage.html">Back to Login</a></h5>
+				</div>
+                  </div></div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- /row -->
+      </section>
+      <!-- /wrapper -->
+    </section>
+    
+    <!--footer start-->
+    
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <!--script for this page-->
+  <script>
+    	function popUp(){
+    		
+    		alert("Document Added Successfully....!!");
+    	}
+    	</script>
+</body>
+
+</html>

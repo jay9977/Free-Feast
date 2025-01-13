@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>View Meal Requests</title>
+
+  <!-- Favicons -->
+  <link href="img/256x256bb.jpg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- External CSS -->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="style.css" rel="stylesheet">
+  <link href="style-responsive.css" rel="stylesheet">
+
+  <style>
+    body {
+      color: #797979;
+      background: url("img/8.jpg") no-repeat top;
+      background-size: cover;
+      font-family: 'Ruda', sans-serif;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="container">
+    <!-- Header Start -->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <a href="loginpage.html" class="logo"><b>Free<span> Feast</span></b></a>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="home.html">Logout</a></li>
+        </ul>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Sidebar Start -->
+    <div id="sidebar" class="nav-collapse">
+      <ul class="sidebar-menu" id="nav-accordion">
+        <li><a href="viewSchool.html"><i class="fa fa-table fa-3x"></i>View School</a></li>
+       
+        <li><a href="viewMeal.html"><i class="fa fa-table fa-3x"></i>View Meal</a></li>
+        <li><a href="addSupplier.html"><i class="fa fa-edit fa-3x"></i>Add Supplier</a></li>
+        <li><a href="viewSupplier.html"><i class="fa fa-table fa-3x"></i>View Supplier</a></li>
+        <li><a href="Delivery_Status.html"><i class="fa fa-table fa-3x"></i>Delivery Status</a></li>
+        <li>
+            <a href="viewComplaints.html"><i class="fa fa-table fa-3x"></i>View Complaints</a>
+          </li>
+        
+      </ul>
+    </div>
+    <!-- Sidebar End -->
+
+    <!-- Main Content -->
+    <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> View Meal Requests</h3>
+        <div class="row mt">
+          <div class="col-lg-12" align="center">
+            <h4 style="color:white"><i class="fa fa-angle-right"></i> Meal Requests</h4>
+            <div class="form-panel">
+              <div class="form">
+                <table class="table table-bordered table-striped" id="mealTable">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>School Name</th>
+                      <th>Food Item</th>
+                      <th>Quantity</th>
+                      <th>Measure</th>
+                      
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Data will be dynamically injected here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <!-- Supplier Assignment Modal -->
+  <div class="modal" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assignModalLabel">Assign Food Requirement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="supplierDropdown">Select Supplier</label>
+            <select id="supplierDropdown" class="form-control">
+              <!-- Dynamically populated with suppliers -->
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="assignFoodRequirement()">Assign</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Scripts -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/common-scripts.js"></script>
+
+  <script>
+    let selectedRequestId = null;
+
+    // Fetch meal requests and populate the table
+    async function fetchMealRequests() {
+      try {
+        let response = await fetch("http://localhost:8080/get-meal-requests");
+        if (!response.ok) throw new Error("Failed to fetch meal requests");
+
+        let data = await response.json();
+        let tableBody = document.querySelector("#mealTable tbody");
+        tableBody.innerHTML = "";
+
+        data.forEach(request => {
+          let row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td>${request.id}</td>
+            <td>${request.school_Name}</td>
+            <td>${request.food_Item}</td>
+            <td>${request.quentity}</td>
+            <td>${request.measure}</td>
+           
+            <td>
+              <button class="btn btn-primary" onclick="openAssignModal(${request.id})">Assign Requirement</button>
+            </td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error("Error fetching meal requests:", error);
+      }
+    }
+
+    // Open modal to assign supplier to meal request
+    function openAssignModal(requestId) {
+      selectedRequestId = requestId;
+      fetchSuppliers(); // Fetch and populate suppliers
+      $('#assignModal').modal('show'); // Show the modal
+    }
+
+    // Fetch suppliers and populate the supplier dropdown
+    async function fetchSuppliers() {
+      try {
+        let response = await fetch("http://localhost:8080/get-supplier");
+        if (!response.ok) throw new Error("Failed to fetch suppliers");
+
+        let suppliers = await response.json();
+        let supplierDropdown = document.getElementById('supplierDropdown');
+        supplierDropdown.innerHTML = '<option value="">Select Supplier</option>'; // Clear previous options
+
+        suppliers.forEach(supplier => {
+          let option = document.createElement('option');
+          option.value = supplier.id;
+          option.textContent = `${supplier.name} (${supplier.city})`;
+          supplierDropdown.appendChild(option);
+        });
+      } catch (error) {
+        console.error("Error fetching suppliers:", error);
+      }
+    }
+// Function to assign food requirement
+async function assignFoodRequirement() {
+  try {
+    const supplierDropdown = document.getElementById("supplierDropdown");
+    const selectedSupplierId = supplierDropdown.value;
+
+    // Validate that a supplier is selected
+    if (!selectedSupplierId) {
+      alert("Please select a supplier.");
+      return;
+    }
+
+    // Prepare the data to send
+    const requestData = {
+      id: selectedRequestId, // The request ID from the row
+      supplierName: supplierDropdown.options[supplierDropdown.selectedIndex].text,
+      supplierCity: supplierDropdown.options[supplierDropdown.selectedIndex].dataset.city
+    };
+
+    // Send the data to the backend to assign the request
+    let response = await fetch("http://localhost:8080/assign", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (!response.ok) throw new Error("Failed to assign request");
+
+    // Close the modal
+    $('#assignModal').modal('hide');
+
+    // Reload the meal requests to reflect the changes
+    fetchMealRequests();
+
+  } catch (error) {
+    console.error("Error assigning food requirement:", error);
+    alert("An error occurred while assigning the meal request.");
+  }
+}
+
+   
+    
+
+    // Initialize page by fetching meal requests
+    window.onload = fetchMealRequests;
+  </script>
+</body>
+
+</html>
